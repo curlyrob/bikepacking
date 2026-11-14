@@ -68,7 +68,7 @@ jobs:
       - name: Website und Kacheln zusammenstellen
         run: |
           mkdir -p _site
-          cp *.html style.css icon.png _site/
+          cp *.html *.svg style.css icon.png _site/
           if [ "$REBUILD" = "true" ]; then
             python3 tools/build_supply.py _site/data/supply/v1 supply.geojsonseq polys/*.poly
           else
