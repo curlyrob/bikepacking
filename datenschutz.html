@@ -25,8 +25,10 @@
 
   <section>
     <h2>Kurz gesagt</h2>
-    <p><strong>Ich als Entwickler erhalte keinerlei Daten aus der App.</strong> Alles, was du einträgst, bleibt auf deinem iPhone.
-      Es gibt kein Benutzerkonto, keinen eigenen Server, keine Werbung, kein Tracking und keine Analyse- oder Statistikdienste.</p>
+    <p>Ausrüstung, Packlisten, Touren, Fahrten, Notfallkarte und Tagebuch bleiben auf deinem iPhone. Es gibt kein Benutzerkonto,
+      keinen eigenen Server, keine Werbung, kein Tracking und keine Analyse- oder Statistikdienste.</p>
+    <p>Ausnahme sind <strong>Community-Schlafplätze</strong>: Was du dort selbst teilst (Ort, Beschreibung, Foto, Bewertung, Spitzname),
+      wird in der öffentlichen iCloud-Datenbank der App gespeichert und ist für alle Nutzer sichtbar.</p>
     <p>Einige Funktionen rufen – ohne Bezug zu deiner Person – Daten zu Orten entlang deiner Route ab: Wetter (bei Open-Meteo),
       Versorgungspunkte (bei GitHub, außerhalb Europas bei einem OpenStreetMap-Server) und den Untergrund (bei einem
       OpenStreetMap-Server). Details stehen unten.</p>
@@ -57,15 +59,40 @@
   </section>
 
   <section>
+    <h2>Community-Schlafplätze</h2>
+    <p>Unter <em>Mehr › Community-Schlafplätze</em> und in der Versorgung kannst du Schlafplätze ansehen, eintragen und bewerten.</p>
+    <h3>Ansehen</h3>
+    <p>Zum Anzeigen fragt die App die öffentliche CloudKit-Datenbank von Bikepacking bei Apple ab – für den Umkreis deiner Position
+      bzw. für Abschnitte entlang deiner Route. Dafür brauchst du kein Konto; Apple verarbeitet dabei technisch notwendig deine
+      IP-Adresse und die abgefragten Orte.</p>
+    <h3>Eintragen und bewerten</h3>
+    <p>Wenn du einen Schlafplatz oder eine Bewertung teilst, werden gespeichert und für alle Nutzer sichtbar: Lage, Art, Name,
+      Beschreibung, Ausstattung, optional ein Foto, Sterne und Text der Bewertung, der Spitzname, den du angibst, und das Datum.
+      Dafür musst du in iCloud angemeldet sein. CloudKit verknüpft jeden Beitrag mit einer anonymen, nur für Bikepacking gültigen
+      Nutzerkennung – nicht mit deinem Namen, deiner Apple-ID oder E-Mail-Adresse. Diese Kennung erlaubt, dass nur du deine
+      Beiträge ändern oder löschen kannst und dass andere dich blockieren können. Die Daten liegen bei Apple in der Datenbank
+      der App (Rechtsgrundlage: Art. 6 Abs. 1 lit. a und b DSGVO); es gelten die
+      <a href="https://www.apple.com/de/legal/privacy/">Datenschutzbestimmungen von Apple</a>.</p>
+    <h3>Melden und blockieren</h3>
+    <p>Meldest du einen Beitrag, werden der betroffene Beitrag, der gewählte Grund und deine anonyme Nutzerkennung gespeichert, damit
+      ich den Beitrag prüfen kann. Gemeldete Beiträge und blockierte Nutzer merkt sich die App außerdem auf deinem iPhone, um sie
+      auszublenden. Beiträge, die gegen die Regeln verstoßen, lösche ich.</p>
+    <h3>Löschen</h3>
+    <p>Eigene Schlafplätze löschst du unter <em>Meine Einträge</em> (wischen) oder im Eintrag über „…“, eigene Bewertungen durch
+      Wischen. Auf Wunsch lösche ich auch alle deine Beiträge – schreib mir eine E-Mail.</p>
+  </section>
+
+  <section>
     <h2>Zugriffsrechte</h2>
     <h3>Standort</h3>
     <p>Der Standort wird genutzt, um deine Position auf der Route und die nächsten Versorgungspunkte zu zeigen, für die
-      Notfallkarte und für den Ort eines Tagebucheintrags. Wenn du eine Fahrt startest, zeichnet die App den Standort auch bei
+      Notfallkarte, für den Ort eines Tagebucheintrags und auf Wunsch als Lage eines neuen Community-Schlafplatzes. Wenn du eine Fahrt startest, zeichnet die App den Standort auch bei
       gesperrtem Bildschirm auf, bis du die Fahrt beendest; iOS zeigt das mit einem Hinweis in der Statusleiste an. Der Standort
       wird dabei nicht übertragen. Ohne Freigabe funktioniert die App weiter, diese Funktionen sind dann eingeschränkt.</p>
     <h3>Fotos</h3>
     <p>Die App hat <strong>keinen Zugriff</strong> auf deine Fotomediathek. Sie nutzt das Auswahlfenster von iOS: Nur die Fotos,
-      die du dort auswählst, werden verkleinert in die App übernommen.</p>
+      die du dort auswählst, werden verkleinert in die App übernommen. Ein Foto zu einem Community-Schlafplatz wird mit dem
+      Eintrag öffentlich geteilt.</p>
     <h3>Nachrichten und Telefon</h3>
     <p>Check-in und Notfallnachricht werden als SMS vorbereitet. Du siehst den Text und schickst ihn selbst ab; der Inhalt
       (inkl. deiner Position und eines Links zu Apple Karten) geht dann an die Empfänger, die du ausgewählt hast. Der Notruf
@@ -106,8 +133,9 @@
 
   <section>
     <h2>Deine Rechte</h2>
-    <p>Da ich keine Daten über dich verarbeite, liegen mir keine Daten vor, über die ich Auskunft geben, die ich berichtigen oder
-      löschen könnte. Bei Fragen zum Datenschutz kannst du mich trotzdem jederzeit per E-Mail erreichen. Du hast außerdem das Recht,
+    <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Widerspruch. Deine
+      Community-Beiträge kannst du selbst ändern und löschen; für alles andere schreib mir eine E-Mail. Über die Daten auf deinem
+      iPhone verfüge nur du. Du hast außerdem das Recht,
       dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren.</p>
   </section>
 
