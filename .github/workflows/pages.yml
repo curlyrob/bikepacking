@@ -1,0 +1,102 @@
+# Baut die Website und die Versorgungs-Kacheln und veröffentlicht beides auf GitHub Pages.
+# Läuft bei jeder Änderung an der Website, jeden Montag (frische OSM-Daten) und auf Knopfdruck.
+# Bei einer reinen Website-Änderung werden die Kacheln der letzten Veröffentlichung übernommen.
+name: Website und Versorgung
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "41 1 * * 1"
+  workflow_dispatch:
+    inputs:
+      supply:
+        description: "Versorgungspunkte neu aus OpenStreetMap bauen"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      UA: "bikepacking-data-build (+https://github.com/curlyrob/bikepacking)"
+      REBUILD: ${{ github.event_name == 'schedule' || inputs.supply == true }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Werkzeuge installieren
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q osmium-tool
+          pip install --quiet shapely
+
+      - name: Versorgungspunkte aus den Länderauszügen filtern
+        if: env.REBUILD == 'true'
+        run: |
+          mkdir -p polys
+          : > supply.geojsonseq
+          for c in albania andorra austria belgium bosnia-herzegovina bulgaria croatia cyprus czech-republic \
+                   denmark estonia faroe-islands finland france germany great-britain greece guernsey-jersey \
+                   hungary iceland ireland-and-northern-ireland isle-of-man italy kosovo latvia liechtenstein \
+                   lithuania luxembourg macedonia malta monaco montenegro netherlands norway poland portugal \
+                   romania serbia slovakia slovenia spain sweden switzerland; do
+            echo "::group::$c"
+            curl -fsSL --retry 3 -A "$UA" -o "polys/$c.poly" "https://download.geofabrik.de/europe/$c.poly"
+            curl -fsSL --retry 3 -A "$UA" -o country.osm.pbf "https://download.geofabrik.de/europe/$c-latest.osm.pbf"
+            osmium tags-filter country.osm.pbf \
+              nwr/amenity=drinking_water,water_point,fountain,restaurant,cafe,fast_food,fuel,biergarten,shelter,bicycle_repair_station,toilets \
+              nwr/shop=supermarket,convenience,bakery,greengrocer,butcher,farm,kiosk,bicycle \
+              nwr/tourism=camp_site,alpine_hut,wilderness_hut,hostel,guest_house,hotel,motel \
+              nwr/man_made=water_tap nwr/natural=spring -o supply.osm.pbf --overwrite
+            osmium export supply.osm.pbf -f geojsonseq -a type,id --geometry-types=point,linestring,polygon \
+              -o country.geojsonseq --overwrite
+            cat country.geojsonseq >> supply.geojsonseq
+            rm -f country.osm.pbf supply.osm.pbf country.geojsonseq
+            echo "::endgroup::"
+          done
+          ls -lh supply.geojsonseq
+
+      - name: Website und Kacheln zusammenstellen
+        run: |
+          mkdir -p _site
+          cp *.html style.css icon.png _site/
+          if [ "$REBUILD" = "true" ]; then
+            python3 tools/build_supply.py _site/data/supply/v1 supply.geojsonseq polys/*.poly
+          else
+            # Kacheln der letzten Veröffentlichung übernehmen (Liste in index.txt)
+            BASE=https://curlyrob.github.io/bikepacking/data/supply/v1
+            mkdir -p _site/data/supply/v1
+            if curl -fsS -o _site/data/supply/v1/index.txt "$BASE/index.txt"; then
+              curl -fsS -o _site/data/supply/v1/meta.json "$BASE/meta.json"
+              (cd _site/data/supply/v1 && xargs -P 16 -I{} curl -fsS --retry 3 --create-dirs -o {} "$BASE/{}" < index.txt)
+            else
+              rmdir _site/data/supply/v1
+            fi
+          fi
+          if [ -d _site/data/supply/v1 ]; then
+            (cd _site/data/supply/v1 && find . -name '*.json' ! -name meta.json | sed 's|^\./||' | sort > index.txt)
+          fi
+          du -sh _site/data 2>/dev/null || true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
