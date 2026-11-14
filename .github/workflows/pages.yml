@@ -53,7 +53,7 @@ jobs:
             curl -fsSL --retry 3 -A "$UA" -o "polys/$c.poly" "https://download.geofabrik.de/europe/$c.poly"
             curl -fsSL --retry 3 -A "$UA" -o country.osm.pbf "https://download.geofabrik.de/europe/$c-latest.osm.pbf"
             osmium tags-filter country.osm.pbf \
-              nwr/amenity=drinking_water,water_point,fountain,restaurant,cafe,fast_food,fuel,biergarten,shelter,bicycle_repair_station,toilets \
+              nwr/amenity=drinking_water,water_point,fountain,restaurant,cafe,fast_food,fuel,biergarten,shelter,bicycle_repair_station,toilets,charging_station \
               nwr/shop=supermarket,convenience,bakery,greengrocer,butcher,farm,kiosk,bicycle \
               nwr/tourism=camp_site,alpine_hut,wilderness_hut,hostel,guest_house,hotel,motel \
               nwr/man_made=water_tap nwr/natural=spring -o supply.osm.pbf --overwrite

@@ -41,6 +41,8 @@ def classify(p):
     drinkable = p.get("drinking_water") in ("yes", "treated")
     if amenity in AMENITY:
         return "a=" + amenity
+    if amenity == "charging_station" and p.get("bicycle") in ("yes", "designated"):
+        return "a=charging_station"  # nur Ladestationen für (E-)Fahrräder
     if amenity == "fountain" and drinkable:
         return "a=fountain"
     if amenity == "shelter":
