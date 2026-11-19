@@ -26,13 +26,14 @@
   <section>
     <h2>Kurz gesagt</h2>
     <p>Ausrüstung, Packlisten, Touren, Fahrten, Notfallkarte und Tagebuch bleiben auf deinem iPhone. Es gibt kein Benutzerkonto,
-      keinen eigenen Server (außer einem kleinen Vermittlungsdienst für die freiwillige Strava-Anmeldung, der nichts speichert), keine Werbung, kein Tracking und keine Analyse- oder Statistikdienste.</p>
-    <p>Ausnahme sind <strong>Community-Schlafplätze</strong>: Was du dort selbst teilst (Ort, Beschreibung, Foto, Bewertung, Spitzname),
+      keinen eigenen Server (außer einem kleinen Vermittlungsdienst für die freiwillige Strava-Anmeldung, der nichts speichert, und dem freiwilligen Live-Standort, der nur die letzte Position bis zu 24 Stunden speichert), keine Werbung, kein Tracking und keine Analyse- oder Statistikdienste.</p>
+    <p>Ausnahme ist die <strong>Community</strong>: Was du dort selbst teilst – Schlafplätze (Ort, Beschreibung, Foto, Bewertung)
+      und Touren (gekürzte Strecke, Etappen, optional Packliste) mit deinem Spitznamen –,
       wird in der öffentlichen iCloud-Datenbank der App gespeichert und ist für alle Nutzer sichtbar. Dieselbe Datenbank nutzt auch die App
       Waldläufer desselben Entwicklers; deine Beiträge sind dort ebenfalls sichtbar.</p>
     <p>Einige Funktionen rufen – ohne Bezug zu deiner Person – Daten zu Orten entlang deiner Route ab: Wetter (bei Open-Meteo),
-      Versorgungspunkte (bei GitHub, außerhalb Europas bei einem OpenStreetMap-Server) und den Untergrund (bei einem
-      OpenStreetMap-Server). Details stehen unten.</p>
+      Versorgungspunkte (bei GitHub, außerhalb Europas bei einem OpenStreetMap-Server), den Untergrund sowie Bahnhöfe,
+      Schutzgebiete und Länder für den Reise-Check (bei einem OpenStreetMap-Server). Details stehen unten.</p>
     <p>Verbindest du die App freiwillig mit <strong>Strava</strong> (Pro), liest sie deine Strava-Aktivitäten und übernimmt
       Fahrten nur nach deiner Bestätigung auf dein iPhone.</p>
   </section>
@@ -70,7 +71,7 @@
 
   <section>
     <h2>Community-Schlafplätze</h2>
-    <p>Unter <em>Mehr › Community-Schlafplätze</em> und in der Versorgung kannst du Schlafplätze ansehen, eintragen und bewerten.</p>
+    <p>Unter <em>Community</em> und in der Versorgung kannst du Schlafplätze ansehen, eintragen und bewerten.</p>
     <h3>Ansehen</h3>
     <p>Zum Anzeigen fragt die App die öffentliche CloudKit-Datenbank von Bikepacking bei Apple ab – für den Umkreis deiner Position
       bzw. für Abschnitte entlang deiner Route. Dafür brauchst du kein Konto; Apple verarbeitet dabei technisch notwendig deine
@@ -90,6 +91,26 @@
     <h3>Löschen</h3>
     <p>Eigene Schlafplätze löschst du unter <em>Meine Einträge</em> (wischen) oder im Eintrag über „…“, eigene Bewertungen durch
       Wischen. Auf Wunsch lösche ich auch alle deine Beiträge – schreib mir eine E-Mail.</p>
+  </section>
+
+  <section>
+    <h2>Touren der Community</h2>
+    <p>Unter <em>Community › Touren der Community</em> und unter <em>Touren</em> kannst du Touren anderer ansehen und übernehmen
+      und eigene Touren teilen.</p>
+    <h3>Ansehen und übernehmen</h3>
+    <p>Zum Anzeigen fragt die App die öffentliche CloudKit-Datenbank von Bikepacking bei Apple ab – für den Umkreis der Kartenmitte
+      oder für alle Touren. Dafür brauchst du kein Konto; Apple verarbeitet dabei technisch notwendig deine IP-Adresse und den
+      abgefragten Ort. Übernimmst du eine Tour, wird sie nur auf deinem iPhone angelegt.</p>
+    <h3>Teilen</h3>
+    <p>Teilst du eine Tour, werden gespeichert und für alle Nutzer sichtbar: Titel, Beschreibung, Spitzname, die Strecke (geplant
+      oder gefahren – nach deiner Wahl), Etappen, Länge, Höhenmeter, Radtyp, Untergrund-Anteile, das Datum des Teilens und auf
+      Wunsch Monat und Jahr der Fahrt, die Namen und Lagen der Übernachtungsorte sowie die Packliste (Teile, Marken, Gewichte,
+      Taschen, optional Notizen). Zum Schutz deines Wohnorts lässt die App Anfang und Ende der Strecke weg (Privatzone, Standard
+      1 km); der Startpunkt für die Umkreissuche wird zusätzlich auf rund 100 m gerundet. Nie geteilt werden Uhrzeiten,
+      Geschwindigkeiten, Tagebuch, Fotos, Checkliste, Preise und Kilometerstände deiner Ausrüstung. Wie bei Schlafplätzen brauchst
+      du eine iCloud-Anmeldung, und CloudKit verknüpft den Beitrag nur mit einer anonymen Nutzerkennung (Rechtsgrundlage:
+      Art. 6 Abs. 1 lit. a und b DSGVO). Melden, Blockieren und Löschen funktionieren wie bei den Schlafplätzen; eigene Touren
+      entfernst du unter <em>Meine Einträge</em> oder in der Tour über „…“ › „Nicht mehr teilen“.</p>
   </section>
 
   <section>
@@ -162,6 +183,24 @@
       gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Es gelten die
       <a href="https://www.komoot.com/de-de/privacy">Datenschutzerklärung von komoot</a> und die Datenschutzbestimmungen von Apple.
       Die Kartendaten stammen von den OpenStreetMap-Mitwirkenden (ODbL 1.0).</p>
+    <h3>Reise-Check: OpenStreetMap</h3>
+    <p>Lädst du im Reise-Check Bahnhöfe, Schutzgebiete und Länder entlang deiner Tour, schickt die App Punkte der Route an
+      einen öffentlichen Overpass-Server für OpenStreetMap-Daten (overpass-api.de, FOSSGIS e.V., Deutschland, ersatzweise
+      overpass.private.coffee). Dabei wird technisch notwendig deine IP-Adresse übertragen; Name, Konto oder andere Angaben zu
+      dir werden nicht gesendet. Das Ergebnis wird nur auf deinem Gerät gespeichert. Öffnungszeiten, Feiertage, Schlafsack,
+      Strom, Reifendruck und der Ultra-Fahrplan werden ausschließlich auf dem Gerät berechnet. Rechtsgrundlage ist
+      Art. 6 Abs. 1 lit. b DSGVO.</p>
+    <h3>Live-Standort per Link (Pro, freiwillig)</h3>
+    <p>Schaltest du in der Fahrt-Ansicht „Live-Standort teilen“ ein, meldet die App während der Aufzeichnung etwa alle fünf
+      Minuten deine Position, die gefahrene Strecke (ausgedünnt), die geplante Route, den Tournamen, den Tag, die gefahrenen
+      Kilometer, die Restkilometer, das Tempo, den Akkustand und den von dir eingegebenen Namen an den Bikepacking-Live-Dienst.
+      Er läuft bei Cloudflare, Inc. (USA; Datenübermittlung auf Grundlage der EU-Standardvertragsklauseln und des
+      EU-US Data Privacy Framework). Gespeichert wird nur die jeweils letzte Meldung unter einer zufälligen Kennung. Wer den
+      Link kennt, den du selbst weitergibst, kann sie im Browser sehen. Schaltest du das Teilen aus, wird sie sofort gelöscht,
+      sonst automatisch 24 Stunden nach der letzten Meldung. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a
+      DSGVO), die du jederzeit durch Ausschalten widerrufen kannst. Die Kartenseite lädt Kartenkacheln von OpenStreetMap
+      (tile.openstreetmap.org) und die Kartenbibliothek Leaflet von unpkg.com; dabei sehen diese Dienste die IP-Adresse der
+      Person, die den Link öffnet.</p>
     <h3>Strava (Pro, freiwillig)</h3>
     <p>Unter <em>Mehr › Einstellungen › Strava</em> kannst du die App mit deinem Strava-Konto verbinden. Bei der Anmeldung
       öffnet sich die Seite von Strava (Strava, Inc., USA); dort erlaubst du der App, deine Aktivitäten zu lesen. Die App erhält
